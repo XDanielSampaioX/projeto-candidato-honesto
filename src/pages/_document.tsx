@@ -1,3 +1,4 @@
+import { ContextCandidatosProvider } from "@/contexts/ContextCandidados";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -5,8 +6,10 @@ export default function Document() {
     <Html lang="pt-br">
       <Head />
       <body>
-        <Main />
-        <NextScript />
+        <ContextCandidatosProvider>
+          <Main />
+          <NextScript />
+        </ContextCandidatosProvider>
       </body>
     </Html>
   );

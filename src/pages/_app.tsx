@@ -1,12 +1,15 @@
+import { CandidatosContextProvider } from "@/hooks/contexts/CandidatosContext";
+import InputContextProvider from "@/hooks/contexts/InputContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { CandidatosContextProvider } from "@/contexts/CandidatosContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <CandidatosContextProvider>
-        <Component {...pageProps} />
+        <InputContextProvider>
+          <Component {...pageProps} />
+        </InputContextProvider>
       </CandidatosContextProvider>
     </>
   )

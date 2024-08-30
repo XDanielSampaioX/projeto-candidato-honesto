@@ -21,7 +21,7 @@ export default function Home() {
 
   const todosRegistros = (
     candidatos.map((candidato, index) => (
-      <Card key={index} nome={candidato.nome} numero={candidato.numero} propostas={candidato.propostas.join('\n ')} />
+      <Card key={index} nome={candidato.nome} numero={candidato.numero} biografia={candidato.biografia} propostas={candidato.propostas.join('\n ')} />
     ))
   )
 

@@ -11,9 +11,9 @@ type Candidato = {
 
 const candidatos: Candidato[] = [
     {
-        "nome": "Ana Silva",
+        "nome": "Marcio Fonseca da Silva",
         "numero": 1234,
-        "biografia": "Ana Silva é uma professora e ativista social com mais de 20 anos de experiência na educação pública.",
+        "biografia": "Graduado em Administração. Atualmente é assistente administrativo no Programa de Pós-Graduação em Direito Constitucional Mestrado e Doutorado da Universidade de Fortaleza-UNIFOR.",
         "propostas": [
             "Investir em educação básica de qualidade.",
             "Expandir o acesso a programas de alfabetização para adultos.",

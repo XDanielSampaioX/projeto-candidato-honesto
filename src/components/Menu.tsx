@@ -1,7 +1,6 @@
 import { Seach } from "@/assets/Seach";
 import { InputContext } from "@/hooks/contexts/InputContext";
 import { useContext } from "react";
-import { FaSearch } from "react-icons/fa";
 
 export default function Menu() {
 

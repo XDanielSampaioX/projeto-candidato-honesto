@@ -24,7 +24,7 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
                 const response = await axios.get<Candidato[]>(`/api/candidatos`)
                 setCandidatos(response.data)
             } catch (error) {
-                console.log("erroror ao buscar os candidatos" + error);
+                console.log("error ao buscar os candidatos" + error);
             }
         };
         fetchCandidatos();

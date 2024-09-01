@@ -13,6 +13,7 @@
 
 .fundoMenu {
     background-color: var(--primary);
+    width: calc(100% - 20px);
 }
 
 .textAzul {

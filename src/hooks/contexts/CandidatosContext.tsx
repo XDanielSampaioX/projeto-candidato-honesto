@@ -1,12 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
 
-type ContextCandidatosProps = {
-    children: React.ReactNode
+type CandidatosContextType = {
+    candidatos: Candidato[],
 }
 
-type CandidatosContextType = {
-    candidatos: Candidato [],
+type CandidatosContextProps = {
+    children: React.ReactNode
 }
 
 const initializeValue: CandidatosContextType = {
@@ -15,7 +15,7 @@ const initializeValue: CandidatosContextType = {
 
 const CandidatosContext = createContext<CandidatosContextType>(initializeValue);
 
-export const CandidatosContextProvider = ({ children }: ContextCandidatosProps) => {
+export const CandidatosContextProvider = ({ children }: CandidatosContextProps) => {
     const [candidatos, setCandidatos] = useState<Candidato[]>([])
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export const CandidatosContextProvider = ({ children }: ContextCandidatosProps) 
             }
         };
         fetchCandidatos();
-    },[]);
+    }, []);
 
     return (
         <CandidatosContext.Provider value=

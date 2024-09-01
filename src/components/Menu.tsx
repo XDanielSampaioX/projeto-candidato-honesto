@@ -1,4 +1,4 @@
-import { Seach } from "@/assets/Seach";
+import { Search } from "@/assets/Search";
 import { InputContext } from "@/hooks/contexts/InputContext";
 import { useContext } from "react";
 
@@ -11,7 +11,7 @@ export default function Menu() {
     };
 
     return (
-        <div className="fundoMenu rounded-md flex gap-10 p-2 m-5 justify-around items-center">
+        <div className="flex justify-around items-center fundoMenu rounded-md gap-10 p-2 m-3 ">
             <div className="flex items-center gap-10">
                 <div className="w-14 h-14 rounded-full bg-white" />
                 <div className="text-white font-semibold">
@@ -26,7 +26,7 @@ export default function Menu() {
                 <input className="rounded-sm m-3 px-2 text-black" type="text"
                     id="inputCandidato" placeholder="Procurar registro..."
                     value={termoDeBusca} onChange={quandoMudar} />
-                <Seach className="absolute top-3.5 right-5 textAzul" />
+                <Search className="absolute top-3.5 right-5 textAzul" />
             </div>
         </div>
     )

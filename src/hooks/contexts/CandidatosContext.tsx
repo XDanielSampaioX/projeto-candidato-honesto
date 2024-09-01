@@ -31,13 +31,21 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
     useEffect(() => {
         fetchCandidatos();
     }, []);
+
     
     // POST
     const postCandidato = async (payload: Candidato) => {
-        await axios.post(`/api/candidatos`, payload)
+        try {
+            await axios.post(`/api/candidatos`, payload)
+            fetchCandidatos();
+        } catch (error) {
 
-        fetchCandidatos();
+            console.log("erro ao adicionar candidato")
+        }
     }
+
+    // PUT
+    
 
     return (
         <CandidatosContext.Provider value=

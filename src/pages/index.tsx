@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center w-full">
       <Menu />
-      <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 max-2xl:grid-cols-4 gap-5 mx-6">
+      <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 max-2xl:grid-cols-4 max-[100vh]:grid-cols-4 gap-5 mx-6">
         {termoDeBusca.length > 0 ?
           <>{ registosFiltrados }</> : <>{ todosRegistros }</>}
       </div>

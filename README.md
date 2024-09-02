@@ -43,6 +43,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Task
 **kaio**
--  Criar o form para o modal de post e put
+-  Criar o form para o modal de post e put ✅
 -  fazer o post ✅
 -  terminar put e delete

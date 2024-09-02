@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaEye, FaUser } from 'react-icons/fa';
 import Modal from './Modal';
+import PorqueVotar from './PorqueVotar';
 
 type CardProps = {
     nome: string;
@@ -38,12 +39,13 @@ export default function Card(props: CardProps) {
                     {props.biografia && <p>{props.biografia}</p>}
                     <p>{props.propostas}</p>
                 </div>
+                <PorqueVotar>
                 <button
                     onClick={fecharModal}
-                    className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                >
+                    className="mt-4 bg-red-500 text-white px-14 py-2 rounded-md hover:bg-red-600">
                     Fechar
                 </button>
+                </PorqueVotar>
             </Modal>
         </div>
     );

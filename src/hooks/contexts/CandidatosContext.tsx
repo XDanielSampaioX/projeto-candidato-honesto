@@ -3,6 +3,7 @@ import axios from 'axios';
 
 type CandidatosContextType = {
     candidatos: Candidato[],
+    postCandidato: (newCandidatos: Candidato[]) => Promise<void>;
 }
 
 type CandidatosContextProps = {
@@ -11,6 +12,8 @@ type CandidatosContextProps = {
 
 const initializeValue: CandidatosContextType = {
     candidatos: [],
+    // inicializando a promise vazia
+    postCandidato: async () => {},
 };
 
 const CandidatosContext = createContext<CandidatosContextType>(initializeValue);
@@ -34,7 +37,7 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
 
     
     // POST
-    const postCandidato = async (payload: Candidato) => {
+    const postCandidato = async (payload: Candidato[]) => {
         try {
             await axios.post(`/api/candidatos`, payload)
             fetchCandidatos();
@@ -50,7 +53,7 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
     return (
         <CandidatosContext.Provider value=
             {
-                { candidatos }
+                { candidatos, postCandidato}
             }
         >{children}</CandidatosContext.Provider>
     )

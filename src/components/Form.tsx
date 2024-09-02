@@ -1,57 +1,92 @@
 import { useState } from "react";
 import Modal from "./Modal";
+import * as yup from "yup";
+import CandidatosContext from "@/hooks/contexts/CandidatosContext";
+import { useCrud } from "@/hooks/contexts/CrudProvider";
+import { set, useForm } from "react-hook-form";
 
-const Form = () => {
 
-    const [modalAberto, setModalAberto] = useState(false);
 
-    const abrirModal = () => setModalAberto(true);
-    const fecharModal = () => setModalAberto(false);
+const [modalAberto, setModalAberto] = useState(false);
 
-    return (
-        <Modal abrirModal={modalAberto} fecharModal={fecharModal}>
-            <form className="max-w-sm mx-auto">
+const abrirModal = () => setModalAberto(true);
+const fecharModal = () => setModalAberto(false);
 
-                <div className="mb-5">
-                    <label htmlFor="nome-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do candidato</label>
-                    <input type="text" id="nome-input" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </input>
-                </div>
+const schema = yup.object({
+    nome: yup
+    .string()
+    .required("Campo obrigatório")
+    .max(100),
 
-                <div className="mb-5">
-                    <label htmlFor="numero-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Numero do candidato</label>
-                    <input type="text" id="numero-input" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </input>
-                </div>
+    numero: yup
+    .string()
+    .required("Campo obrigatório")
+    .max(5),
 
-                <div className="mb-5">
-                    <label htmlFor="proposta1-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proposta 1</label>
-                    <input type="text" id="proposta1-input" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </input>
-                </div>
+    biografia: yup
+    .string()
+    .required("Campo obrigatório")
+    .max(1000),
 
-                <div className="mb-5">
-                    <label htmlFor="proposta2-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proposta 2</label>
-                    <input type="text" id="proposta2-input" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </input>
-                </div>
+    propostas: yup
+    .array()
+    .of(yup.string().required("Campo obrigatório").max(100)),
+})
 
-                <div className="mb-5">
-                    <label htmlFor="proposta3-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proposta 3</label>
-                    <input type="text" id="proposta3-input" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </input>
-                </div>
+const FormCandidato = () => {
+    const [show, setShow] = useState(false)
+    const { postCandidato } = useCrud()
 
-                <div className="mb-5">
-                    <label htmlFor="large-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Biografia</label>
-                    <input type="text" id="large-input" className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </input>
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+        reset,
+      } = useForm<Candidatos>({
+        // @ts-expect-error Erro de tipagem
+        resolver: yupResolver(schema),
+      });
+
+      const fecharForms = () => {
+        fecharModal()
+        setShow(false)
+      }
+      const abrirForms = () => {
+        abrirModal()
+        setShow(true)
+      }
+
+      const onClick = async (formData: Candidatos) => {
+        const novoCandidato: Candidatos = {
+            nome: formData.nome,
+            numero: formData.numero,
+            biografia: formData.biografia,
+            propostas: formData.propostas
+        };
+
+        await postCandidato(novoCandidato);
+        fecharForms()
+        reset();
+      };
+
+      return (
+        <>
+            <div>
+                <button
+                className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                onClick={() => abrirForms()} >
+                    Adicionar Candidato
+                </button>
             </div>
-            </form>
 
+            <Modal abrirModal={false} fecharModal={function (): void {
+                  throw new Error("Function not implemented.");
+              } } children={undefined}>
 
-        </Modal>
-    )
+            </Modal>
+        </>
+      )
+
 }
 
-export default Form
+

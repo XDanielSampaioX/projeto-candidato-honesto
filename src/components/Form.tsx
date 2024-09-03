@@ -1,11 +1,9 @@
-import { useState } from "react";
 import Modal from "./Modal";
 import * as yup from "yup";
 import CandidatosContext from "@/hooks/contexts/CandidatosContext";
 import { useCrud } from "@/hooks/contexts/CrudProvider";
 import { set, useForm } from "react-hook-form";
-
-
+import { useState } from "react";
 
 const [modalAberto, setModalAberto] = useState(false);
 
@@ -42,7 +40,7 @@ const FormCandidato = () => {
         register,
         formState: { errors },
         reset,
-      } = useForm<Candidatos>({
+      } = useForm<Candidato>({
         // @ts-expect-error Erro de tipagem
         resolver: yupResolver(schema),
       });
@@ -56,8 +54,8 @@ const FormCandidato = () => {
         setShow(true)
       }
 
-      const onClick = async (formData: Candidatos) => {
-        const novoCandidato: Candidatos = {
+      const onClick = async (formData: Candidato) => {
+        const novoCandidato: Candidato = {
             nome: formData.nome,
             numero: formData.numero,
             biografia: formData.biografia,

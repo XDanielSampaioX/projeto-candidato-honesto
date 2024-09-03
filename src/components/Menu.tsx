@@ -11,7 +11,7 @@ export default function Menu() {
     };
 
     return (
-        <div className="flex justify-around items-center fundoMenu rounded-md gap-10 overflow-hidden">
+        <div className="flex justify-around items-center fundoMenu rounded-md gap-10 p-2">
             <div className="flex items-center gap-10">
                 <div className="w-14 h-14 rounded-full bg-white" />
                 <div className="text-white font-semibold">

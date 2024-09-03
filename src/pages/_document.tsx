@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="pt-br">
       <Head />
-      <body className="fundoPagina flex justify-center items-center">
+      <body className="fundoPagina">
           <Main />
           <NextScript />
       </body>

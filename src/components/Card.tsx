@@ -31,7 +31,7 @@ export default function Card(props: Candidato) {
                     <p>Número do partido: {props.numero}</p>
                     <p>{props.biografia}</p>
                     <div className='text-justify px-6'>
-                        {props.propostas.map((proposta, index) => (
+                        {props.propostas?.map((proposta, index) => (
                             <div key={index}>{index+1}º - Proposta {proposta}</div>
                         ))}
                     </div>

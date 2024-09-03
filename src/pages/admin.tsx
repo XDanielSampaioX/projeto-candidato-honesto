@@ -26,24 +26,24 @@ export default function Admin() {
   return (
 
     <>
-      <Menu />
-      <div className="flex flex-col items-center space-y-6 bg-gray-900 min-h-screen py-3">
-        <h1 className="text-3xl text-white font-bold">Administração de Candidatos</h1>
-        <table className="w-3/4 bg-gray-800 text-white rounded-lg shadow-lg">
-          <thead>
-            <tr className="flex justify-between bg-gray-700 p-3 rounded-t-lg">
-              <th className=" font-semibold text-left">Nome</th>
-              <th className=" font-semibold text-center">Número</th>
-              <th className=" font-semibold text-center">Propostas</th>
-              <th className=" font-semibold text-center">Ações</th>
-            </tr>
-          </thead>
-          <div className="fundoMenu">
-            {termoDeBusca.length > 0 ?
-              <>{registosFiltrados}</> : <>{todosRegistros}</>}
-          </div>
-        </table>
-      </div>
+      <header className="flex flex-col items-center max-w-screen">
+        <Menu />
+        <div className="flex flex-col items-center space-y-6 bg-gray-900 py-3">
+          <h1 className="text-3xl text-white font-bold">Administração de Candidatos</h1>
+          <table className="bg-gray-800 text-white rounded-lg shadow-lg w-full mx-auto">
+            <thead className="flex justify-center">
+              <tr className="flex text-center justify-between bg-gray-700 p-3 rounded-t-lg w-full">
+                <th className="w-1/6">Nome</th>
+                <th className="w-1/6">Número</th>
+                <th className="w-1/4">Propostas</th>
+                <th className="w-1/6">Ações</th>
+              </tr>
+            </thead>
+              {termoDeBusca.length > 0 ?
+                <>{registosFiltrados}</> : <>{todosRegistros}</>}
+          </table>
+        </div>
+      </header>
     </>
   );
 }

@@ -6,7 +6,7 @@ type CrudProviderProps = {
 };
 
 type CrudContextTypes = {
-    cardCandidato: Candidatos[]
+    cardCandidato: Candidato[]
     getCandidatos: () => Promise<void>;
     postCandidato: (payload: Candidato) => Promise<void>;
 };
@@ -17,7 +17,7 @@ const CrudProvider = ({ children }: CrudProviderProps) => {
 
     // * GET
                                     // O TIPO DE post E setPosts SÃO OS MESMOS DE POSTS
-    const [cardCandidato, setCardCandidato] = useState<Candidatos[]>([])
+    const [cardCandidato, setCardCandidato] = useState<Candidato[]>([])
 
     const getCandidatos = async () => {
 
@@ -25,7 +25,7 @@ const CrudProvider = ({ children }: CrudProviderProps) => {
         try {
             
             // armazenar a resposta da API
-            const response = await axios.get<Candidatos[]>(`/api/candidatos`);
+            const response = await axios.get<Candidato[]>(`/api/candidatos`);
             
             
             // armazenar apenas os dados retornados pela resposta
@@ -56,7 +56,7 @@ const CrudProvider = ({ children }: CrudProviderProps) => {
 
 
     // * POST
-    const postCandidato = async (payload: Candidatos) => {
+    const postCandidato = async (payload: Candidato) => {
         // // mock api time 100ms
         // await new Promise((resolve) => setTimeout(resolve, 100));
         await axios.post(`/api/candidatos`, payload);

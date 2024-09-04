@@ -8,7 +8,7 @@ type CrudProviderProps = {
 type CrudContextTypes = {
     cardCandidato: Candidatos[]
     getCandidatos: () => Promise<void>;
-    postCandidato: (payload: Candidato) => Promise<void>;
+    postCandidato: (payload: Candidatos) => Promise<void>;
 };
 
 const CrudContext = createContext({} as CrudContextTypes);

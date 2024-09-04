@@ -43,7 +43,7 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
             fetchCandidatos();
         } catch (error) {
 
-            console.log("erro ao adicionar candidato")
+            alert("Erro ao carregar o servidor")
         }
     }
 

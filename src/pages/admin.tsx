@@ -1,3 +1,4 @@
+import FormCandidato from "@/components/Form";
 import Menu from "@/components/Menu";
 import Tbody from "@/components/Tbody";
 import CandidatosContext from "@/hooks/contexts/CandidatosContext";

@@ -1,6 +1,6 @@
 declare type Candidato = {
     nome: string;
-    numero: number,
+    numero: string,
     biografia: string,
     propostas?: string[],
 }

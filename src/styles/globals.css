@@ -20,3 +20,8 @@
     color: var(--primary);
 }
 
+/* tentei adicionar uma transição mais suave no modal do forms... N deu mt certo :/ */
+#formsmodal {
+    transition: 700ms;
+}
+

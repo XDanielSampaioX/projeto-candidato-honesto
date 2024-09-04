@@ -185,7 +185,8 @@ const FormCandidato = () => {
                                         required 
                                         />
                                         {errors?.propostas?.message ? (
-                                            <div className="invalid-feedback">
+
+<div className="invalid-feedback">
                                             {errors.propostas.message}
                                             </div>
                                         ) : (

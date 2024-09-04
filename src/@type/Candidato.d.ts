@@ -1,4 +1,4 @@
-declare type Candidatos = {
+declare type Candidato = {
     nome: string;
     numero: string,
     biografia: string,

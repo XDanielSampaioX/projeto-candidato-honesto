@@ -44,5 +44,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Task
 **kaio**
 -  Criar o form para o modal de post e put ✅
--  fazer o post ✅
+-  fazer o post 
+  
+    **revisar o porque do post não estar funcionando**
+    
+        provavelmente deve ter algo relacionado ao NextJs!! -> pesquisar como fazer a requisição axios + next
 -  terminar put e delete

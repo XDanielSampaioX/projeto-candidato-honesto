@@ -1,6 +1,6 @@
 declare type Candidato = {
     id?: string;
-    imagem?: { publicUrl: string; };
+    imagem?: string;
     nome: string;
     partido?: string;
     numero: string,

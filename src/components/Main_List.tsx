@@ -14,7 +14,7 @@ export default function Admin() {
 
   // Estados para armazenar os valores dos campos
   const [formData, setFormData] = useState<Candidato>({
-    imagem: undefined,
+    imagem: "",
     nome: "",
     numero: "",
     partido: "",
@@ -50,7 +50,7 @@ export default function Admin() {
             console.error('Error uploading image:', error);
           } else {
             const {data: publicURL} = supabase.storage.from('imagens').getPublicUrl(data.path);
-            setFormData({ ...formData, imagem: publicURL });
+            setFormData({ ...formData, imagem: publicURL.publicUrl});
           }
         }
       } else {
@@ -66,7 +66,7 @@ export default function Admin() {
       await validationSchema.validate(formData, { abortEarly: false });
       postCandidato(formData); // Se não houver erros, envia os dados
       setFormData({
-        imagem: undefined,
+        imagem: "",
         nome: "",
         numero: "",
         partido: "",

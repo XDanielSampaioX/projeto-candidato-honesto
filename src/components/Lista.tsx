@@ -18,7 +18,7 @@ export default function Tbody(props: Candidato) {
 
   // Estados para armazenar os valores dos campos
   const [formData, setFormData] = useState<Candidato>({
-    imagem: props.imagem || "",
+    imagem: "",
     id: props.id || "",
     nome: props.nome || "",
     numero: props.numero || "",
@@ -62,7 +62,7 @@ export default function Tbody(props: Candidato) {
           <h2 className="text-xl font-semibold mb-4">Formulário de Cadastro</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col">
-              <input type="file" id="imagem" name="imagem" value={formData.imagem} onChange={handleChange} ></input>
+              <input type="file" id="imagem" name="imagem" accept={"image/*"} onChange={handleChange} ></input>
             </div>
             <div className="flex flex-col">
               <Input id="nome" name="nome" value={formData.nome} onChange={handleChange} ></Input>

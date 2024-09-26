@@ -18,7 +18,7 @@ export default function Card(props: Candidato) {
                 <div className="flex max-lg:flex-col items-center justify-evenly gap-10 p-4 h-96">
                     {props.imagem ?
                         <div className="bg-blue-900 flex justify-center items-center rounded-full absolute top-3 w-28 h-28">
-                            <Image src={props.imagem} alt="Imagem" width={100} height={100} className="w-24 h-24 object-cover rounded-full" />
+                            <Image src={props.imagem} alt="Imagem" width={100} height={100} className="rounded-full" />
                         </div> :
                         <div className="bg-blue-900 flex justify-center items-center rounded-full absolute top-3 w-28 h-28">
                             <FaUser className="w-10 h-10 " />

@@ -50,21 +50,12 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
         console.log("Aqui")
     }, [])
 
-    // POST
-    // const postCandidato = async (candidato: Candidato) => {
-    //     try {
-    //         await axios.post(`http://localhost:3000/candidatos`, candidato);
-    //         fetchCandidatos();
-    //     } catch (error) {
-    //         console.log("Erro ao adicionar candidato:", error);
-    //     }
-    // };
     const postCandidato = async (candidato: Candidato) => {
         try {
             const { data, error } = await supabase
                 .from('candidatos')
                 .insert(
-                    { imagem: candidato.imagem, nome: candidato.nome, propostas : candidato.propostas }
+                    { imagem: candidato.imagem, nome: candidato.nome, partido : candidato.partido, numero : candidato.numero, biografia : candidato.biografia,  propostas : candidato.propostas, like : candidato.like, disLike : candidato.disLike }
                 )
                 .select()
                 if (error) {

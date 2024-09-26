@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --primary: #19586C;
-    --secondary: #090A22;
+* {
+  font-family: poppins, sans-serif;
 }
-
-.fundoPagina {
-    background-color: var(--secondary);
-}
-
-.fundoMenu {
-    background-color: var(--primary);
-    width: calc(100% - 1vw);
-}
-
-.textAzul {
-    color: var(--primary);
-}
-
-/* tentei adicionar uma transição mais suave no modal do forms... N deu mt certo :/ */
-#formsmodal {
-    transition: 700ms;
-}
-

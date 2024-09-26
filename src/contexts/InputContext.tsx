@@ -9,15 +9,14 @@ type InputContextProviderProps = {
     children : React.ReactNode
 }
 
-const valorInicial = {
+
+const InputContext = createContext<InputContextType>({
     termoDeBusca: "",
     setTermoDeBusca: () => {}
-}
+});
 
-export const InputContext = createContext<InputContextType>(valorInicial);
-
-const InputContextProvider = ({children}: InputContextProviderProps) => {
-    const [termoDeBusca, setTermoDeBusca] = useState('');
+export const InputContextProvider = ({children}: InputContextProviderProps) => {
+    const [termoDeBusca, setTermoDeBusca] = useState("");
 
     return (
         <InputContext.Provider value={{termoDeBusca, setTermoDeBusca}}>
@@ -26,5 +25,5 @@ const InputContextProvider = ({children}: InputContextProviderProps) => {
     )
 }
 
-export default InputContextProvider
+export default InputContext
 

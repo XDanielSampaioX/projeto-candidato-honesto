@@ -3,18 +3,14 @@ import { FaPen, FaTrash } from "react-icons/fa";
 import CandidatosContext from "../contexts/CandidatosContext";
 import Input from "./Input";
 import Modal from "./Modal";
+import supabase from "@/config/supabaseClient";
+// import Image from "next/image";
+import ImagePreview from "./ImagePreview";
 
 export default function Tbody(props: Candidato) {
   const { putCandidato, deleteCandidato } = useContext(CandidatosContext);
 
   const [modalAberto, setModalAberto] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
 
   // Estados para armazenar os valores dos campos
   const [formData, setFormData] = useState<Candidato>({
@@ -26,6 +22,30 @@ export default function Tbody(props: Candidato) {
     biografia: props.biografia || "",
     propostas: props.propostas || "",
   });
+
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, files } = e.target as HTMLInputElement;
+
+    if (name === "imagem") {
+      const file = files && files[0];
+      if (file) {
+        const { data, error } = await supabase.storage
+          .from('imagens')
+          .upload(`public/${file.name}`, file, {
+            cacheControl: '3600',
+            upsert: false,
+          });
+          if (error) {
+            console.error('Error uploading image:', error);
+          } else {
+            const {data: publicURL} = supabase.storage.from('imagens').getPublicUrl(data.path);
+            setFormData({ ...formData, imagem: publicURL.publicUrl});
+          }
+        }
+      } else {
+        setFormData({ ...formData, [name]: value });
+      }
+    };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,11 +81,8 @@ export default function Tbody(props: Candidato) {
         <div className="bg-blue-900 text-black p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-4">Formulário de Cadastro</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
+              {formData.imagem && <ImagePreview imageURL={formData.imagem}/>}
             <div className="flex flex-col">
-              <input type="file" id="imagem" name="imagem" accept={"image/*"} onChange={handleChange} ></input>
-            </div>
-            <div className="flex flex-col">
-              <Input id="nome" name="nome" value={formData.nome} onChange={handleChange} ></Input>
             </div>
             <div className="flex flex-col">
               <Input id="numero" name="numero" value={formData.numero} onChange={handleChange}></Input>

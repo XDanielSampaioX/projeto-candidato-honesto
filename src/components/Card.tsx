@@ -10,15 +10,13 @@ export default function Card(props: Candidato) {
     const abrirModal = () => setModalAberto(true);
     const fecharModal = () => setModalAberto(false);
 
-    console.log(props.imagem)
-
     return (
         <div className="relative text-center bg-white rounded-md w-72 h-auto">
             <button onClick={abrirModal} className="w-full h-full">
                 <div className="flex max-lg:flex-col items-center justify-evenly gap-10 p-4 h-96">
                     {props.imagem ?
                         <div className="bg-blue-900 flex justify-center items-center rounded-full absolute top-3 w-28 h-28">
-                            <Image src={props.imagem} alt="Imagem" width={100} height={100} className="rounded-full" />
+                            <Image src={props.imagem} alt="Imagem" width={100} height={100} priority className="w-auto h-auto rounded-full object-cover" />
                         </div> :
                         <div className="bg-blue-900 flex justify-center items-center rounded-full absolute top-3 w-28 h-28">
                             <FaUser className="w-10 h-10 " />
@@ -41,7 +39,7 @@ export default function Card(props: Candidato) {
                     {/* Caso a imagem não esteja setada, o FaUser sera exibido no lugar da imagem */}
                     {props.imagem ?
                         <div className="bg-blue-900 flex justify-center items-center rounded-full w-28 h-28">
-                            <Image className="rounded-full" src={props.imagem} width={100} height={100} alt={"imagemCandidato"} />
+                            <Image className="w-auto h-auto rounded-full object-contain" src={props.imagem} width={100} height={100} priority alt={"imagemCandidato"} />
                         </div>
                         :
                         <div className="bg-blue-900 flex justify-center items-center rounded-full w-28 h-28">

@@ -22,7 +22,7 @@ export default function Menu() {
                             <Link href="/">Home</Link>
                         </li>
                         <li>
-                            <Link href="/Admin">Admin</Link>
+                            <Link href="/AdminCandidato">Admin</Link>
                         </li>
                         <li>
                             <Link href="/Sobre">Sobre</Link>

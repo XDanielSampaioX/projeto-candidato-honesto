@@ -1,11 +1,11 @@
 declare type Candidato = {
-    id?: string;
+    id?: number;
     imagem?: string;
     nome: string;
     partido?: string;
     numero: string,
     biografia: string,
     propostas?: string,
-    like?: string;
-    disLike?: string;
+    like?: number;
+    disLike?: number;
 }

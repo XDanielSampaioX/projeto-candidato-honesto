@@ -46,17 +46,17 @@ export default function Admin() {
             cacheControl: '3600',
             upsert: false,
           });
-          if (error) {
-            console.error('Error uploading image:', error);
-          } else {
-            const {data: publicURL} = supabase.storage.from('imagens').getPublicUrl(data.path);
-            setFormData({ ...formData, imagem: publicURL.publicUrl});
-          }
+        if (error) {
+          console.error('Error uploading image:', error);
+        } else {
+          const { data: publicURL } = supabase.storage.from('imagens').getPublicUrl(data.path);
+          setFormData({ ...formData, imagem: publicURL.publicUrl });
         }
-      } else {
-        setFormData({ ...formData, [name]: value });
       }
-    };
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,6 +114,7 @@ export default function Admin() {
               <li className="flex text-center justify-between bg-gray-700 p-3 rounded-t-lg w-full">
                 <span className="w-1/12">Id</span>
                 <span className="w-1/6">Nome</span>
+                <span className="w-1/6">Imagem</span>
                 <span className="w-1/12">Número</span>
                 <span className="w-1/4">Partido</span>
                 <span className="w-1/4 max-md:hidden">Propostas</span>
@@ -122,42 +123,47 @@ export default function Admin() {
             </ul>
             {termoDeBusca.length > 0
               ? candidatos
-                  .filter((candidato) =>
-                    candidato.nome
-                      .toLowerCase()
-                      .includes(termoDeBusca.toLowerCase()) ||
-                    candidato.numero.toString().includes(termoDeBusca)
-                  )
-                  .map((candidato, index) => (
-                    <Lista
-                      key={index}
-                      id={candidato.id}
-                      nome={candidato.nome}
-                      numero={candidato.numero}
-                      partido={candidato.partido}
-                      biografia={candidato.biografia}
-                      propostas={candidato.propostas}
-                    />
-                  ))
-              : candidatos.map((candidato, index) => (
+                .filter((candidato) =>
+                  candidato.nome
+                    .toLowerCase()
+                    .includes(termoDeBusca.toLowerCase()) ||
+                  candidato.numero.toString().includes(termoDeBusca)
+                )
+                .map((candidato, index) => (
                   <Lista
                     key={index}
                     id={candidato.id}
                     nome={candidato.nome}
+                    imagem={candidato.imagem}
                     numero={candidato.numero}
                     partido={candidato.partido}
                     biografia={candidato.biografia}
                     propostas={candidato.propostas}
+                    like={candidato.like}
+                    disLike={candidato.disLike}
                   />
-                ))}
+                ))
+              : candidatos.map((candidato, index) => (
+                <Lista
+                  key={index}
+                  id={candidato.id}
+                  nome={candidato.nome}
+                  imagem={candidato.imagem}
+                  numero={candidato.numero}
+                  partido={candidato.partido}
+                  biografia={candidato.biografia}
+                  propostas={candidato.propostas}
+                  like={candidato.like}
+                  disLike={candidato.disLike}
+                />
+              ))}
           </div>
         </div>
         <Modal abrirModal={modalAberto} fecharModal={fecharModal}>
           <div className="bg-blue-900 text-black p-4 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Formulário de Cadastro</h2>
             <form onSubmit={handleSubmit} className="py-1">
-              {/* Input da imagem */}
-              <label htmlFor="imagem_candidato"/>
+              <label htmlFor="imagem_candidato" />
               <input
                 type="file"
                 id="imagem_candidato"

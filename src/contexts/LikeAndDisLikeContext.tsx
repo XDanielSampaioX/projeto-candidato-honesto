@@ -1,4 +1,4 @@
-import axios from "axios";
+import supabase from "@/config/supabaseClient";
 import { createContext, useState } from "react";
 
 type LikeAndDisLikeContextType = {
@@ -25,40 +25,59 @@ export const LikeAndDisLikeContextProvider = ({ children }: LikeAndDisLikeContex
     const [like, setLike] = useState<number>(0);
     const [disLike, setDisLike] = useState<number>(0);
 
-    const fetchCandidato = async (id: string | undefined) => {
+
+    const fetchCandidato = async (id : number | undefined) => {
         try {
-            const response = await axios.get(`http://localhost:3000/candidatos/${id}`);
-            return response.data;
+            const { data, error } = await supabase
+            .from('candidatos')
+            .select()
+            if (error) {
+                console.log("Erro ao buscar Candidato:", error);
+            } else {
+                const candidato = data.find((candidato) => candidato.id === id);
+                if (candidato) {
+                    setLike(candidato.like || 0);
+                    setDisLike(candidato.disLike || 0);
+                }
+            }
         } catch (error) {
-            console.log("Erro ao buscar zzz:", error);
+            console.log("Erro ao buscar Candidato:", error);
         }
     };
-
     const patchLike = async (candidato: Candidato) => {
-
-        await fetchCandidato(candidato.id);
-        const candidatoAtual = await fetchCandidato(candidato.id);
         try {
-            const novoLike = (candidatoAtual.like || like) + 1; // Incrementa o like
-            await axios.patch(`http://localhost:3000/candidatos/${candidato.id}`, {
-                like: novoLike, // Atualiza o like no servidor
-            });
-            setLike(novoLike); // Atualiza o estado localmente
+            const {data, error} = await supabase
+            .from('candidatos')
+            .update({ like: (candidato.like || like) + 1 })
+            .eq('id', candidato.id)
+            .select();
+    
+            if (error) {
+                console.log("Erro ao atualizar like:", error);
+            } else {
+                console.log("Like: ", data);
+                fetchCandidato(candidato.id);
+            }
         } catch (error) {
             console.log("Erro ao atualizar like:", error);
         }
     };
-
     const patchDisLike = async (candidato: Candidato) => {
         try {
-            const candidatoAtual = await fetchCandidato(candidato.id);
-            const novoDisLike = (candidatoAtual.disLike || disLike) + 1; // Incrementa o dislike
-            await axios.patch(`http://localhost:3000/candidatos/${candidato.id}`, {
-                disLike: novoDisLike, // Atualiza o dislike no servidor
-            });
-            setDisLike(novoDisLike); // Atualiza o estado localmente
+            const {data, error} = await supabase
+            .from('candidatos')
+            .update({ disLike: (candidato.disLike || disLike) + 1 })
+            .eq('id', candidato.id)
+            .select();
+    
+            if (error) {
+                console.log("Erro ao atualizar like:", error);
+            } else {
+                console.log("DisLike: ", data);
+                fetchCandidato(candidato.id);
+            }
         } catch (error) {
-            console.log("Erro ao atualizar dislike:", error);
+            console.log("Erro ao atualizar like:", error);
         }
     };
 

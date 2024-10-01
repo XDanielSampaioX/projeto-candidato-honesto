@@ -1,13 +1,11 @@
-import axios from 'axios';
 import { createContext, useEffect, useState } from "react";
-
 import supabase from "../config/supabaseClient";
 
 type CandidatosContextType = {
     candidatos: Candidato[],
     postCandidato: (newCandidato: Candidato) => Promise<void>;
     putCandidato: (candidato: Candidato) => Promise<void>;
-    deleteCandidato: (id: string | undefined) => Promise<void>
+    deleteCandidato: (candidato: Candidato) => Promise<void>
 }
 
 type CandidatosContextProps = {
@@ -77,9 +75,9 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
             const { data, error } = await supabase
                 .from('candidatos')
                 .update(
-                    {imagem: candidato.imagem, nome: candidato.nome, partido: candidato.partido, numero: candidato.numero, biografia: candidato.biografia, propostas: candidato.propostas, like: candidato.like, disLike: candidato.disLike}
+                    { imagem: candidato.imagem, nome: candidato.nome, partido: candidato.partido, numero: candidato.numero, biografia: candidato.biografia, propostas: candidato.propostas, like: candidato.like, disLike: candidato.disLike }
                 )
-                .eq('id' , candidato.id)
+                .eq('id', candidato.id)
                 .select()
             if (error) {
                 console.log("Error ao editar o candidato:", error);
@@ -87,8 +85,6 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
                 console.log("Candidato aditado com sucesso", data);
                 fetchCandidatos();
             }
-            // await axios.put(`http://localhost:3000/candidatos/${candidato.id}`, candidato);
-            // console.log(candidato.id)
             fetchCandidatos();
         } catch (error) {
             console.log("Erro ao atualizar candidato:", error);
@@ -96,21 +92,31 @@ export const CandidatosContextProvider = ({ children }: CandidatosContextProps) 
     };
 
     // DELETE
-    const deleteCandidato = async (id: string | undefined) => {
+    const deleteCandidato = async (candidato: Candidato) => {
         const confirmDelete = window.confirm("Tem certeza que deseja ELIMINAR o candidato?");
+        
         if (confirmDelete) {
             try {
-                // const { data, error } = await supabase
-                //     .from('candidatos')
-                //     .update({ other_column: 'otherValue' })
-                //     .select()
-                await axios.delete(`http://localhost:3000/candidatos/${id}`);
-                fetchCandidatos();
+                // Excluir o candidato do banco de dados
+                const { error } = await supabase
+                    .from('candidatos')
+                    .delete()
+                    .eq('id', candidato.id);
+    
+                // Verifica se houve erro na exclusão do candidato
+                if (error) {
+                    console.log("Erro ao excluir o candidato:", error);
+                } else {
+                    console.log("Candidato excluído com sucesso");
+                    fetchCandidatos(); // Atualiza a lista de candidatos após exclusão
+                }
+    
             } catch (error) {
                 console.log("Erro ao deletar candidato:", error);
             }
         }
     };
+    
 
     return (
         <CandidatosContext.Provider value={{ candidatos, postCandidato, putCandidato, deleteCandidato }}>

@@ -8,7 +8,7 @@ O projeto **Candidato Honesto** é uma aplicação desenvolvida para promover a 
 - **Acompanhamento de Campanha:** Os eleitores podem acompanhar o progresso das promessas feitas pelos candidatos.
 
 ## Tecnologias Utilizadas
-- **Frontend:** React.js
+- **Frontend:** Next.js
 - **Banco de Dados:** Supabase
 - **Hospedagem:** Vercel
 
@@ -54,7 +54,3 @@ O projeto **Candidato Honesto** é uma aplicação desenvolvida para promover a 
 
 ## Contato
 Para mais informações, entre em contato com [danielsampaio127@gmail.com](mailto:danielsampaio127@gmail.com).
-## Tecnologias Utilizadas
-- **Frontend:** Next.js
-- **Banco de Dados:** Supabase
-- **Hospedagem:** Vercel

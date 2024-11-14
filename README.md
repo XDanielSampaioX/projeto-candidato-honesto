@@ -1,40 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Descrição
+O projeto **Candidato Honesto** é uma aplicação desenvolvida para promover a transparência e a honestidade nas campanhas eleitorais. Ele permite que os eleitores acompanhem as promessas dos candidatos e verifiquem a veracidade das informações divulgadas.
 
-## Getting Started
+## Funcionalidades
+- **Cadastro de Candidatos:** Permite o registro de candidatos com informações detalhadas.
+- **Registro de Promessas:** Os candidatos podem registrar suas promessas de campanha.
+- **Verificação de Fatos:** Ferramenta para verificar a veracidade das promessas e declarações dos candidatos.
+- **Acompanhamento de Campanha:** Os eleitores podem acompanhar o progresso das promessas feitas pelos candidatos.
 
-First, run the development server:
+## Tecnologias Utilizadas
+- **Frontend:** React.js
+- **Banco de Dados:** Supabase
+- **Hospedagem:** Vercel
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Instalação
+1. Clone o repositório:
+    ```bash
+    git clone https://github.com/seu-usuario/projeto-candidato-honesto.git
+    ```
+2. Navegue até o diretório do projeto:
+    ```bash
+    cd projeto-candidato-honesto
+    ```
+3. Instale as dependências do frontend:
+    ```bash
+    npm install
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Uso
+1. Inicie o servidor frontend:
+    ```bash
+    npm start
+    ```
+2. Acesse a aplicação em seu navegador:
+    ```
+    http://localhost:3000
+    ```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Contribuição
+1. Faça um fork do projeto.
+2. Crie uma branch para sua feature:
+    ```bash
+    git checkout -b minha-feature
+    ```
+3. Commit suas alterações:
+    ```bash
+    git commit -m 'Adiciona minha feature'
+    ```
+4. Envie para o repositório remoto:
+    ```bash
+    git push origin minha-feature
+    ```
+5. Abra um Pull Request.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Contato
+Para mais informações, entre em contato com [danielsampaio127@gmail.com](mailto:danielsampaio127@gmail.com).
+## Tecnologias Utilizadas
+- **Frontend:** Next.js
+- **Banco de Dados:** Supabase
+- **Hospedagem:** Vercel
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+O projeto **Candidato Honesto** é uma aplicação desenvolvida para promover a transparência e a honestidade nas campanhas eleitorais. Ele permite que os eleitores acompanhem as promessas dos candidatos e verifiquem a veracidade das informações divulgadas.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Funcionalidades
+- **Cadastro de Candidatos:** Permite o registro de candidatos com informações detalhadas.
+- **Registro de Promessas:** Os candidatos podem registrar suas promessas de campanha.
+- **Verificação de Fatos:** Ferramenta para verificar a veracidade das promessas e declarações dos candidatos.
+- **Acompanhamento de Campanha:** Os eleitores podem acompanhar o progresso das promessas feitas pelos candidatos.
